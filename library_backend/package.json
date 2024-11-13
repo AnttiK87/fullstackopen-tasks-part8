@@ -1,0 +1,23 @@
+{
+  "name": "library_backend",
+  "version": "1.0.0",
+  "description": "tasks 8.1-8.7",
+  "main": "library-backend.js",
+  "scripts": {
+    "test": "test",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "tasks",
+    "library"
+  ],
+  "author": "Antti Kortelainen",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@apollo/server": "^4.11.2",
+    "graphql": "^16.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
