@@ -1,0 +1,10 @@
+node_modules/
+build/
+dist/
+tests/
+test/
+.env
+*.env
+*.log
+docs/
+*.md

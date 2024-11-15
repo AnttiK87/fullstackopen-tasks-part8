@@ -4,8 +4,10 @@
   "description": "tasks 8.1-8.7",
   "main": "library-backend.js",
   "scripts": {
-    "test": "test",
-    "dev": "nodemon index.js"
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env  NODE_ENV=test node --test",
+    "lint": "eslint ."
   },
   "keywords": [
     "tasks",
@@ -15,9 +17,19 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@apollo/server": "^4.11.2",
-    "graphql": "^16.9.0"
+    "dotenv": "^16.4.5",
+    "graphql": "^16.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.0.0",
+    "mongoose-unique-validator": "^4.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.11.0",
     "nodemon": "^3.1.7"
   }
 }
