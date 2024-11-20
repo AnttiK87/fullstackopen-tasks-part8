@@ -1,23 +1,26 @@
+//Authors component
+
+//dependencies
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { UPDATE_AUTHOR, ALL_AUTHORS } from '../queries'
 
-const Authors = ({ show, authors }) => {
+const Authors = ({ authors }) => {
+  //state variables
   const [name, setName] = useState('')
   const [born, setBorn] = useState('')
 
+  //set name for updating year of birth
   const handleChange = (event) => {
     setName(event.target.value)
   }
 
+  //setting query used for updating year of birth
   const [updateAuthor] = useMutation(UPDATE_AUTHOR, {
     refetchQueries: [{ query: ALL_AUTHORS }],
   })
 
-  if (!show) {
-    return null
-  }
-
+  //function for update button
   const submit = async (event) => {
     event.preventDefault()
 
@@ -27,30 +30,27 @@ const Authors = ({ show, authors }) => {
     setBorn('')
   }
 
+  //rendering this component
   return (
-    <div>
-      <h2>authors</h2>
-      <table>
-        <tbody>
-          <tr>
-            <th></th>
-            <th>born</th>
-            <th>books</th>
-          </tr>
-          {authors.map((a) => (
-            <tr key={a.name}>
-              <td>{a.name}</td>
-              <td>{a.born}</td>
-              <td>{a.bookCount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <h2>Set birth year</h2>
-      <form onSubmit={submit}>
+    <div style={{ maxWidth: '750px', marginLeft: '35px' }}>
+      <h1
+        style={{
+          marginBottom: '5px',
+        }}
+      >
+        Authors
+      </h1>
+      <h3
+        style={{
+          marginBottom: '5px',
+        }}
+      >
+        Set authors birth year
+      </h3>
+      <form style={{ marginBottom: '10px' }} onSubmit={submit}>
         <label>
-          Select author:
-          <select value={name} onChange={handleChange}>
+          <strong>Select author:</strong>
+          <select className={'option'} value={name} onChange={handleChange}>
             <option value="" disabled>
               -- Select an author --
             </option>
@@ -62,15 +62,60 @@ const Authors = ({ show, authors }) => {
           </select>
         </label>
         <div>
-          Birth year:
+          <strong> Birth year:</strong>
           <input
+            className={'option'}
             type="number"
+            min="0"
+            max={new Date().getFullYear()}
             value={born}
             onChange={({ target }) => setBorn(parseInt(target.value, 10))}
           />
         </div>
-        <button type="submit">update</button>
+        <button className={'buttonBlue'} type="submit">
+          Update
+        </button>
       </form>
+      <table
+        style={{
+          width: '100%',
+          borderCollapse: 'collapse',
+          marginTop: '20px',
+          backgroundColor: '#f9f9f9',
+          marginBottom: '50px',
+        }}
+      >
+        <thead>
+          <tr
+            style={{
+              backgroundColor: '#007bff',
+              color: 'white',
+              fontWeight: 'bold',
+              textAlign: 'left',
+            }}
+          >
+            <th style={{ padding: '12px' }}>Author</th>
+            <th style={{ padding: '12px', textAlign: 'center' }}>Born</th>
+            <th style={{ padding: '12px', textAlign: 'center' }}>Books</th>
+          </tr>
+        </thead>
+        <tbody>
+          {authors.map((a, index) => (
+            <tr
+              key={a.name}
+              style={{
+                borderBottom: '1px solid #ddd',
+                textAlign: 'left',
+                backgroundColor: index % 2 === 0 ? '#ffffff' : '#f1f1f1', // Alternates row colors
+              }}
+            >
+              <td style={{ padding: '8px' }}>{a.name}</td>
+              <td style={{ padding: '8px', textAlign: 'center' }}>{a.born}</td>
+              <td style={{ padding: '8px', textAlign: 'center' }}>{a.bookCount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }

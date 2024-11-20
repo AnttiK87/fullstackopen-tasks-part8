@@ -1,8 +1,10 @@
-const mongoose = require('mongoose')
+// Model for books that are added to the db
 
-// you must install this library
+// Dependencies
+const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
+// "Blueprints" for book in the db and settings for validation
 const schema = new mongoose.Schema({
   title: {
     type: String,
@@ -20,6 +22,8 @@ const schema = new mongoose.Schema({
   genres: [{ type: String }],
 })
 
+//for validating that book with same title is added only once to db
 schema.plugin(uniqueValidator)
 
+// Exports
 module.exports = mongoose.model('Book', schema)

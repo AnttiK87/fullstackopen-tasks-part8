@@ -1,0 +1,30 @@
+/*css-style file*/
+body {
+  margin: 0px !important;
+}
+
+.buttonBlue {
+  padding: 10px 15px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttonGrey {
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.option {
+  display: block;
+  width: 30% !important;
+  padding: 8px;
+  margin: 5px 0px 10px 0px;
+  box-sizing: border-box;
+  appearance: 'none';
+  border: '1px solid #ccc';
+  border-radius: '4px';
+}
